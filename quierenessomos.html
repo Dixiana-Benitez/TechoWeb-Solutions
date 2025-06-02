@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tekno Web Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    nav {
+      background-color: #007bff;
+      color: white;
+      padding: 1em 2em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-title {
+      font-size: 1.8em;
+      font-weight: bold;
+      text-shadow: 0 0 6px #000;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 6px;
+      display: block;
+      transition: background 0.2s ease;
+      background: rgba(255,255,255,0.1);
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.3);
+      color: #ffd700;
+    }
+
+    nav li:hover > ul {
+      display: flex;
+    }
+
+    nav li > ul {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      background: #0056b3;
+      top: 100%;
+      left: 0;
+      border-radius: 8px;
+      min-width: 160px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    nav li > ul li a {
+      padding: 10px 20px;
+      background: none;
+    }
+
+    h1#a {
+      color: #007bff;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      padding: 20px;
+      margin: 0 auto;
+      width: 80%;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cuadro1,
+    .cuadro2,
+    .cuadro3 {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      text-align: center;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      width: 100%;
+      max-width: 44%;
+      min-width: 300px;
+    }
+
+    .cuadro1 {
+      width: 100%;
+    }
+
+    .cuadro1:hover,
+    .cuadro2:hover,
+    .cuadro3:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transform: translateY(-6px);
+    }
+
+    .cuadro1 h2,
+    .cuadro2 h2,
+    .cuadro3 h2 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 1.8em;
+      letter-spacing: 0.5px;
+    }
+
+    .cuadro1 p,
+    .cuadro2 p,
+    .cuadro3 p {
+      color: #555;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background: #0056b3;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cuadro2,
+      .cuadro3 {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="header-title">Tekno Web Solutions</div>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="empleados.html">Empleados</a></li>
+      <li><a href="servicios">Servicios</a></li>
+      <li><a href="metodologia.html">Metodología</a></li>
+      <li>
+        <a href="#">Creadores <i class="fa fa-caret-down"></i></a>
+        <ul>
+          <li><a href="#">Ioshua Rodriguez</a></li>
+          <li><a href="#">María Acosta</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Login <i class="fa fa-caret-down"></i></a>
+        <ul>
+          <li><a href="login.html">Iniciar sesión</a></li>
+          <li><a href="registro.html">Registrarse</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <h1 id="a">Bienvenido a Tekno Web Solutions</h1>
+  <p>Aquí encontrarás soluciones web innovadoras.</p>
+
+  <div class="container">
+    <div class="cuadro1">
+      <h2>¿Quienes Somos?</h2>
+      <p>En Tekno Web Solutions, creemos que una presencia digital sólida es la clave para el éxito en el mundo actual. Somos un equipo apasionado de diseñadores, desarrolladores y especialistas en marketing digital dedicados a crear páginas web impactantes y funcionales, así como a ofrecer soluciones web integrales que impulsan el crecimiento de tu negocio.
+
+      Desde el diseño inicial hasta la implementación y el soporte continuo, trabajamos de la mano con nuestros clientes para transformar sus ideas en realidades digitales que conectan con su audiencia, generan resultados y los diferencian de la competencia. No solo creamos sitios web, construimos herramientas que te ayudan a alcanzar tus objetivos.</p>
+    </div>
+
+    <div class="cuadro2">
+      <h2>Misión</h2>
+      <p>Nuestra misión es potenciar a nuestros clientes a través de soluciones digitales innovadoras, eficientes y adaptadas a sus necesidades. Queremos ser parte del motor que transforma negocios tradicionales en referentes digitales.</p>
+    </div>
+
+    <div class="cuadro3">
+      <h2>Visión</h2>
+      <p>Ser una empresa líder en el desarrollo de soluciones web en América Latina, reconocida por su excelencia, innovación y compromiso con el éxito de nuestros clientes.</p>
+    </div>
+  </div>
+
+</body>
+</html>

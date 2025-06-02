@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TecnoWeb Solutions - Inicio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #dceeff, #f0f8ff);
+      color: #1f2f46;
+    }
+
+    header {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-title {
+      font-weight: 700;
+      font-size: 2rem;
+      flex-grow: 1;
+      text-align: center;
+      text-shadow: 0 0 10px #000;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.05);
+    }
+
+    nav a::before {
+      content: "💻";
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.05);
+      color: #ffd700;
+    }
+
+    nav li:hover > ul {
+      display: flex;
+    }
+
+    nav li > ul {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      background: #2f496d;
+      top: 100%;
+      left: 0;
+      border-radius: 8px;
+      min-width: 160px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    nav li > ul li a {
+      padding: 10px 20px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    section {
+      display: flex;
+      gap: 20px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      perspective: 1000px;
+    }
+
+    section:hover {
+      transform: scale(1.02) rotateX(1deg) rotateY(1deg);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    section:nth-child(1) { animation-delay: 0.2s; }
+    section:nth-child(2) { animation-delay: 0.4s; }
+    section:nth-child(3) { animation-delay: 0.6s; }
+    section:nth-child(4) { animation-delay: 0.8s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section img {
+      width: 40%;
+      object-fit: cover;
+      border-radius: 12px 0 0 12px;
+      transition: transform 0.6s ease, filter 0.6s ease, box-shadow 0.6s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    section:hover img {
+      transform: scale(1.07) rotateZ(-1deg);
+      filter: brightness(1.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Ajuste específico solo para la imagen del div de servicios */
+    #servicios img {
+      width: 40%;
+      height: auto;
+      border-radius: 0;
+    }
+
+    .section-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #2f496d;
+    }
+
+    .section-content ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    footer {
+      background: #2f496d;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        flex-direction: column;
+      }
+
+      section img,
+      #servicios img {
+        width: 20%;
+        height: 200px;
+        border-radius: 12px 12px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title">TecnoWeb Solutions</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="quierenessomos.html">¿Quiénes somos?</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="metodologia.html">Metodología</a></li>
+        <li><a href="empleados.html">Empleados</a></li>
+        <li>
+          <a href="#">Creadores <i class="fa fa-caret-down"></i></a>
+          <ul>
+            <li><a href="#">04_Dixiana Benitez</a></li>
+            <li><a href="#">46_Kevin Medina</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Login <i class="fa fa-caret-down"></i></a>
+          <ul>
+            <li><a href="login.html">Iniciar sesión</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="Bienvenido">
+      <div class="section-content">
+        <h2>Bienvenido</h2>
+        <p>En TecnoWeb Solutions nos especializamos en ofrecer soluciones integrales para tus necesidades tecnológicas. Desde diseño web hasta servidores, estamos aquí para ayudarte.</p>
+      </div>
+    </section>
+
+    <section id="quienes-somos">
+      <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800" alt="Equipo">
+      <div class="section-content">
+        <h2>¿Quiénes somos?</h2>
+        <p>Somos una empresa enfocada en brindarte soporte tecnológico profesional y personalizado.</p>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?auto=format&fit=crop&w=800&q=80" alt="Servicios TI">
+      <div class="section-content">
+        <h2>¿Qué ofrecemos?</h2>
+        <ul>
+          <li>Diseño y rediseño de páginas web</li>
+          <li>Seguridad informática para tus plataformas</li>
+          <li>Mantenimiento y mejora de servidores</li>
+          <li>Expansión de infraestructura tecnológica</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="metodologia">
+      <img width=13 src="data:image/jpeg;base64,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" alt="Metodología">
+      <div class="section-content">
+        <h2>Nuestra metodología</h2>
+        <p>Aplicamos un enfoque ágil y estructurado que incluye análisis, diseño, desarrollo, pruebas, implementación y mantenimiento.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2023 TecnoWeb Solutions | Todos los derechos reservados
+  </footer>
+
+</body>
+</html>

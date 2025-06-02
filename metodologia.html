@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TecnoWeb Solutions - Nuestra Metodología</title>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+<style>
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #dceeff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f2f46;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: #1f2f46;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header img {
+    width: 80px;
+  }
+
+  .header-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  /* Menú */
+
+  /* Ocultar checkbox */
+  #menu-toggle {
+    display: none;
+  }
+
+  /* Label para hamburguesa */
+  .menu-toggle-label {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+  nav li {
+    position: relative;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 0;
+    display: inline-block;
+  }
+
+  nav a:hover {
+    color: #7db5e0;
+  }
+
+  /* Submenú */
+  nav li > ul {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background: #2f496d;
+    border-radius: 6px;
+    padding: 10px 0;
+    min-width: 140px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 200;
+  }
+
+  nav li > ul li {
+    margin: 0;
+  }
+
+  nav li > ul li a {
+    padding: 8px 20px;
+    font-weight: normal;
+  }
+
+  nav li > ul li a:hover {
+    background: #4176af;
+  }
+
+  /* Mostrar submenu en hover desktop */
+  @media (hover: hover) {
+    nav li:hover > ul {
+      display: flex;
+    }
+  }
+
+  /* CONTENIDO PRINCIPAL */
+  .txt {
+    background-image: url('https://eu-images.contentstack.com/v3/assets/blt69509c9116440be8/bltd4562d02cb55817f/673e10dc006ff59e6ee82a21/cybersecurityteam_YuriArcurs-AlamyStockPhoto.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 3rem;
+    text-align: center;
+    color: #7db5e0;
+    text-shadow: 0 0 10px darkblue;
+    padding: 0 15px;
+  }
+
+  .title {
+    background: #2f496d;
+    color: #dceeff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+    padding: 25px 15px;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+  }
+
+  main h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  main section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #1f2f46;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #2f496d;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+  }
+
+  /* RESPONSIVE */
+
+  /* Móviles */
+  @media (max-width: 767px) {
+    .menu-toggle-label {
+      display: block;
+    }
+
+    nav ul {
+      flex-direction: column;
+      background: #1f2f46;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 220px;
+      height: calc(100% - 60px);
+      padding-top: 20px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+      z-index: 150;
+    }
+
+    /* Cuando checkbox está checked mostrar menú */
+    #menu-toggle:checked + .menu-toggle-label + nav ul {
+      transform: translateX(0);
+    }
+
+    nav li {
+      margin-bottom: 15px;
+    }
+
+    /* Submenú solo visible si checkbox interno está marcado */
+    nav li > ul {
+      position: static;
+      box-shadow: none;
+      background: #2f496d;
+      padding-left: 15px;
+      display: none;
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    /* Submenú toggle checkbox */
+    nav li input.submenu-toggle {
+      display: none;
+    }
+
+    nav li input.submenu-toggle:checked ~ ul {
+      display: flex;
+      max-height: 500px; /* suficiente para mostrar todo */
+    }
+
+    nav li > a .caret {
+      margin-left: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Ajustar header */
+    .header-title {
+      font-size: 1.3rem;
+      text-align: left;
+      flex-grow: 0;
+      margin-left: 15px;
+    }
+
+    main {
+      grid-template-columns: 1fr;
+      margin-top: 20px;
+      padding: 0 15px;
+    }
+
+    .txt {
+      font-size: 2rem;
+      height: 35vh;
+    }
+
+    .title {
+      font-size: 1.8rem;
+      padding: 20px 15px;
+      margin-top: 20px;
+    }
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    main {
+      grid-template-columns: 1fr 1fr;
+      padding: 0 30px;
+      gap: 35px;
+    }
+
+    .txt {
+      font-size: 3.5rem;
+      height: 45vh;
+    }
+
+    .title {
+      font-size: 2.3rem;
+      padding: 25px 30px;
+      margin-top: 30px;
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: 1024px) {
+    .menu-toggle-label {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <img src="e.png" alt="Logo" />
+  <div class="header-title">Nuestra Metodología</div>
+
+  <!-- Checkbox para menú hamburguesa -->
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir menú">
+    <i class="fa-solid fa-bars"></i>
+  </label>
+
+  <nav>
+    <ul role="menubar">
+      <li role="none">
+        <!-- Checkbox para abrir submenú en móvil -->
+        <input type="checkbox" id="submenu-toggle" class="submenu-toggle" />
+        <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          Servicios <span class="caret"><i class="fa-solid fa-caret-down"></i></span>
+        </a>
+        <ul role="menu" aria-label="Submenú Servicios">
+          <li role="none"><a href="#">Análisis</a></li>
+          <li role="none"><a href="#">Diseño</a></li>
+          <li role="none"><a href="#">Desarrollo</a></li>
+          <li role="none"><a href="#">Pruebas</a></li>
+          <li role="none"><a href="#">Implementación</a></li>
+          <li role="none"><a href="#">Mantenimiento</a></li>
+        </ul>
+      </li>
+      <li role="none"><a href="index.html" role="menuitem">Inicio</a></li>
+      <li role="none"><a href="quierenessomos.html" role="menuitem">Nosotros</a></li>
+      <li role="none"><a href="empleados.html" role="menuitem">Empleados</a></li>
+      <li role="none"><a href="servicios" role="menuitem">Servicios</a></li>
+      <li role="none"><a href="FAQ.html" role="menuitem">FAQ</a></li>
+      <li role="none"><a href="login.html" role="menuitem">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="txt" aria-label="Texto principal animado">
+  Nuestra metodología
+</div>
+
+<div class="title">
+  Trabajamos para ofrecerte el mejor servicio
+</div>
+
+<main>
+  <section>
+    <h1>📋 Análisis</h1>
+    <p>Con base en el análisis, definimos los requerimientos y planificamos...</p>
+  </section>
+  <section>
+    <h1>📐 Diseño</h1>
+    <p>Creamos los esquemas y prototipos que guiarán el desarrollo de tu proyecto.</p>
+  </section>
+  <section>
+    <h1>💻 Desarrollo</h1>
+    <p>Nuestro equipo pone manos a la obra para construir la solución con la mejor calidad.</p>
+  </section>
+  <section>
+    <h1>🧪 Pruebas</h1>
+    <p>Garantizamos que todo funcione perfectamente antes de desplegar.</p>
+  </section>
+  <section>
+    <h1>🚀 Implementación</h1>
+    <p>Desplegamos tu solución en el entorno productivo con soporte inicial.</p>
+  </section>
+  <section>
+    <h1>🔧 Mantenimiento</h1>
+    <p>Seguimos acompañándote para mantener y mejorar tu proyecto a largo plazo.</p>
+  </section>
+</main>
+
+<footer>
+  © 2023 TecnoWeb Solutions | Todos los derechos reservados
+</footer>
+</body>
+</html>
