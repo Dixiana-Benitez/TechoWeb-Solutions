@@ -6,28 +6,103 @@
   <title>TecnoWeb Solutions - Inicio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <style>
+    /* ==============================
+       Variables de Color y Transiciones
+    ============================== */
+    :root {
+      --blue-dark: #191c3b;
+      --blue-mid: #353858;
+      --blue-light: #52536d;
+      --blue-bg: #c4ddf3;
+      --text-dark: #1f2f46;
+      --text-light: #ffffff;
+      --accent: #00c0ff;
+      --bg-gradient: linear-gradient(to bottom, #fafafa, #c4ddf3);
+      --header-gradient: linear-gradient(to right, #52536d, #353858, #191c3b);
+      --transition: all 0.3s ease-in-out;
+    }
+
+    /* ==============================
+       RESET GLOBAL
+    ============================== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      transition: var(--transition);
     }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #dceeff, #f0f8ff);
-      color: #1f2f46;
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      perspective: 1000px;
+      overflow-x: hidden;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ==============================
+       ANIMACIONES
+    ============================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ==============================
+       HEADER
+    ============================== */
     header {
-      background: linear-gradient(to right, #140f27, #2c2043, #492c64);
-      color: white;
+      background: var(--header-gradient);
+      color: var(--text-light);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 30px 40px;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
+      box-shadow: 0 0 30px #1d1c3b;
+      animation: all 1s ease forwards;
     }
 
     .header-title {
@@ -35,10 +110,17 @@
       font-size: 2rem;
       flex-grow: 1;
       text-align: center;
-      text-shadow: 0 0 10px #000;
+      text-shadow: 0 0 10px #000000;
+      transform-style: preserve-3d;
+      cursor: default;
     }
 
-    /* Checkbox para menú hamburguesa */
+    .header-title:hover {
+      text-shadow: 0 0 15px var(--accent);
+      border-radius: 10px;
+    }
+
+    /* Checkbox oculto para menú hamburguesa */
     #menuToggle {
       display: none;
     }
@@ -46,269 +128,665 @@
     /* Ícono del menú hamburguesa */
     .menu-icon {
       display: none;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
-      color: white;
+      color: var(--text-light);
+      z-index: 1100;
+    }
+
+    /* Navegación */
+    nav {
+      display: flex;
+      align-items: center;
     }
 
     nav ul {
       display: flex;
       gap: 20px;
-      list-style: none;
+      align-items: center;
+      animation: fadeInUp 1s ease forwards;
     }
 
     nav li {
       position: relative;
+      transform-style: preserve-3d;
     }
 
     nav a {
-      color: white;
-      text-decoration: none;
       font-weight: 600;
-      padding: 10px 16px;
+      padding: 8px 16px;
       border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.3s ease;
-      background: rgba(255,255,255,0.05);
+      color: var(--text-light);
+      font-size: 0.95rem;
     }
 
+    /* Icono 💻 al inicio de cada enlace */
     nav a::before {
       content: "💻";
+      display: inline-block;
+      margin-right: 4px;
     }
 
     nav a:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.05);
-      color: #ffd700;
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05) translateZ(20px);
+      color: var(--text-dark);
+      border-bottom: 2px solid var(--accent);
+      text-shadow: 0 0 8px var(--accent);
+      transition: var(--transition);
+      content: "🖥️";
     }
 
-    nav li:hover > ul {
-      display: flex;
-    }
-
+    /* Submenú oculto por defecto */
     nav li > ul {
       display: none;
       flex-direction: column;
       position: absolute;
-      background: #2f496d;
       top: 100%;
       left: 0;
+      background: var(--blue-mid);
       border-radius: 8px;
-      min-width: 160px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 101;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    /* Mostrar submenú al hacer foco o hover en el <li> */
+    nav li:focus-within > ul,
+    nav li:hover > ul {
+      display: flex;
+      transform: scaleY(1);
+      opacity: 1;
     }
 
     nav li > ul li a {
       padding: 10px 20px;
+      font-size: 0.9rem;
+      background: transparent;
+      color: var(--text-light);
     }
 
+    nav li > ul li a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent);
+    }
+
+    /* ==============================
+       MAIN
+    ============================== */
     main {
       max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 40px;
+      animation: fadeIn 1s ease forwards;
     }
 
-    /* ===== Modificaciones para el div de bienvenida ===== */
-    #inicio {
-      width: 100%;
-      padding: 100px 20px;
+    /* Sección "Bienvenido" (#inicio) */
+    .inicio {
       background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920') no-repeat center/cover;
       position: relative;
       overflow: hidden;
-      color: rgb(255, 255, 255);
+      color: var(--text-light);
       text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 1s ease forwards;
+    }
+    .inicio:hover {
+      transform: scale(1.02) rotateX(1deg) rotateY(1deg) translateZ(20px);
+      box-shadow: 0 0px 30px rgba(0, 0, 0, 0.25);
     }
 
-    #inicio .section-content h2 {
+    .inicio .section-content {
+      padding: 60px 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    .inicio .section-content h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
       opacity: 0;
       transform: translateX(-100%);
-      animation: slideInTitle 1s ease-out forwards;
+      animation: slideInLeft 1s ease-out forwards;
     }
 
-    #inicio .section-content p {
+    .inicio .section-content p {
       font-size: 1.2rem;
       opacity: 0;
-      animation: fadeInText 1s ease-out 0.7s forwards;
+      animation: fadeIn 1s ease-out 0.7s forwards;
     }
 
-    @keyframes slideInTitle {
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeInText {
-      to {
-        opacity: 1;
-      }
-    }
-    /* ===== Fin de modificaciones ===== */
-
-    section {
-      display: flex;
+    /* Sección de planes de alojamiento */
+    section[clas="elige tu mejor opcion"] {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      opacity: 0;
-      transform: translateY(30px);
+      margin: 0 auto;
+      padding: 0 10px;
       animation: fadeInUp 1s ease forwards;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      perspective: 1000px;
     }
 
-    section:hover {
-      transform: scale(1.02) rotateX(1deg) rotateY(1deg);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    section[clas="elige tu mejor opcion"] .tema {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 10px;
+      animation: fadeIn 1s ease forwards;
     }
 
-    section:nth-child(1) { animation-delay: 0.2s; }
-    section:nth-child(2) { animation-delay: 0.4s; }
-    section:nth-child(3) { animation-delay: 0.6s; }
-    section:nth-child(4) { animation-delay: 0.8s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    section[clas="elige tu mejor opcion"] .tema h1 {
+      font-size: 2rem;
+      color: var(--blue-dark);
     }
 
-    section img {
-      width: 40%;
-      object-fit: cover;
-      border-radius: 12px 0 0 12px;
-      transition: transform 0.6s ease, filter 0.6s ease, box-shadow 0.6s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    section:hover img {
-      transform: scale(1.07) rotateZ(-1deg);
-      filter: brightness(1.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    /* Ajuste específico solo para la imagen del div de servicios */
-    #servicios img {
-      width: 40%;
-      height: auto;
-      border-radius: 0;
-    }
-
-    .section-content {
+    .primera,
+    .Segundo,
+    .Tercero {
+      background: var(--blue-bg);
+      border: 2px solid var(--blue-light);
+      border-radius: 12px;
       padding: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1s ease forwards;
     }
 
-    .section-content h2 {
+    .primera:hover,
+    .Segundo:hover,
+    .Tercero:hover {
+      transform: translateY(-5px) translateZ(10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .primera h2,
+    .Segundo h2,
+    .Tercero h2 {
       font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #2f496d;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
 
-    .section-content ul {
-      list-style: disc;
-      padding-left: 20px;
-    }
-
-    footer {
-      background: #2f496d;
-      color: white;
+    .primera p,
+    .Segundo p,
+    .Tercero p {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-bottom: 15px;
       text-align: center;
-      padding: 20px;
+    }
+
+    .primera .precio,
+    .Segundo .precio,
+    .Tercero .precio {
+      background: var(--blue-mid);
+      color: var(--text-light);
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .primera .precio h1,
+    .Segundo .precio h1,
+    .Tercero .precio h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+
+    .primera .precio p,
+    .Segundo .precio p,
+    .Tercero .precio p {
+      font-size: 0.9rem;
+      color: var(--blue-bg);
+    }
+
+    /* Botón "Elegí plan" */
+    .primera .plan a,
+    .Segundo .plan a,
+    .Tercero .plan a {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--text-light);
+      padding: 10px 25px;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .primera .plan a:hover,
+    .Segundo .plan a:hover,
+    .Tercero .plan a:hover {
+      transform: translateY(-3px) translateZ(10px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background: var(--blue-dark);
+    }
+
+    .primera .requisitos ul,
+    .Segundo .requisitos ul,
+    .Tercero .requisitos ul {
+      list-style: none;
+      width: 100%;
+      padding-left: 0;
+      margin-top: 10px;
+    }
+
+    .primera .requisitos ul li,
+    .Segundo .requisitos ul li,
+    .Tercero .requisitos ul li {
+      margin: 8px 0;
+      padding-left: 22px;
+      position: relative;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    .primera .requisitos ul li::before,
+    .Segundo .requisitos ul li::before,
+    .Tercero .requisitos ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Sección "Atendemos" */
+    .atendemos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: var(--blue-bg);
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .atendemos img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .atendemos .section-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    .atendemos .section-content h2 {
+      font-size: 1.8rem;
+      color: var(--blue-dark);
+      margin-bottom: 12px;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .atendemos .section-content ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .atendemos .section-content ul li {
+      margin-bottom: 10px;
+      padding-left: 22px;
+      position: relative;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+
+    .atendemos .section-content ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    footer {
+      background: var(--blue-mid);
+      color: var(--text-light);
+      text-align: center;
+      padding: 40px 20px;
       font-weight: bold;
       margin-top: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1s ease forwards;
     }
 
-    /* ===== Responsive para tablets y celulares ===== */
-    @media (max-width: 1024px) {
-      main {
-        margin: 30px auto;
-        padding: 0 15px;
-      }
-
-      section img {
-        width: 40%;
-        height: auto;
-      }
+    footer h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: rgba(0, 0, 0, 0.705);
     }
 
-    @media (max-width: 768px) {
-      /* Mostrar ícono de menú hamburguesa */
+    footer p,
+    footer a {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--text-light);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    footer .footer-item {
+      text-align: left;
+    }
+
+    /* ==============================
+       RESPONSIVE – MÓVIL (≤468px)
+    ============================== */
+    @media screen and (max-width: 468px) {
+      /* Mostrar ícono de hamburguesa */
       .menu-icon {
         display: block;
       }
 
-      /* Ocultar lista de navegación por defecto */
-      nav ul {
-        display: none;
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background: rgba(25, 28, 59, 0.95);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
         flex-direction: column;
-        gap: 0;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 100%;
-        z-index: 100;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
       }
 
-      /* Mostrar menú cuando checkbox esté marcado */
-      #menuToggle:checked + nav ul {
-        display: flex;
+      /* Cuando #menuToggle está marcado, mostrar nav */
+      #menuToggle:checked ~ nav {
+        transform: translateX(0);
       }
 
-      nav > ul > li {
-        width: 100%;
-        margin: 0;
+      /* Menú vertical en móvil */
+      nav ul {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
       }
 
-      nav ul li a {
+      nav li {
         width: 100%;
+        text-align: center;
+      }
+
+      nav a {
         padding: 12px 20px;
+        font-size: 1.1rem;
       }
 
-      /* Submenús siguen apareciendo con hover */
-      nav li ul {
+      /* Submenú en móvil (aparecer al hacer foco o hover) */
+      nav li > ul {
         position: static;
+        background: none;
+        box-shadow: none;
+        transform: scaleY(1);
+        opacity: 1;
+        display: none;
       }
 
+      nav li:focus-within > ul,
       nav li:hover > ul {
         display: flex;
       }
 
-      section {
-        flex-direction: column;
+      nav li > ul li a {
+        padding-left: 35px;
+        font-size: 1rem;
       }
 
-      section img,
-      #servicios img {
-        width: 100%;
-        height: auto;
-        max-height: 250px;
-        border-radius: 12px 12px 0 0;
-        object-fit: cover;
+      /* Sección Bienvenido ajustada */
+      #inicio .section-content {
+        padding: 40px 15px;
       }
 
-      .section-content {
-        padding: 16px;
-        text-align: center;
+      #inicio .section-content h2 {
+        font-size: 2rem;
       }
 
-      main {
-        margin: 20px auto;
+      #inicio .section-content p {
+        font-size: 1rem;
+      }
+
+      /* Sección de planes apilada */
+      section[clas="elige tu mejor opcion"] {
+        grid-template-columns: 1fr;
         padding: 0 10px;
+      }
+
+      .primera,
+      .Segundo,
+      .Tercero {
+        width: 100%;
+      }
+
+      /* Sección Atendemos en columna */
+      .atendemos {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin: 0 10px;
+      }
+
+      .atendemos img {
+        margin-bottom: 20px;
+      }
+
+      .atendemos .section-content {
+        margin-top: 10px;
+      }
+
+      /* Footer apilado */
+      footer .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 30px 15px;
+      }
+    }
+
+    /* ==============================
+       RESPONSIVE – TABLET (≤768px)
+    ============================== */
+    @media screen and (min-width: 469px) and (max-width: 768px) {
+      .menu-icon {
+        display: none;
+      }
+      #menuToggle:checked ~ nav {
+        transform: translateX(-100%);
+      }
+
+      nav {
+        position: static;
+        transform: translateX(0);
+        background: transparent;
+        height: auto;
+        width: 100%;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      nav a {
+        padding: 8px 12px;
+        font-size: 0.95rem;
+      }
+
+      /* Sección Bienvenido */
+      #inicio .section-content {
+        padding: 50px 18px;
+      }
+      #inicio .section-content h2 {
+        font-size: 2.2rem;
+      }
+      #inicio .section-content p {
+        font-size: 1.1rem;
+      }
+
+      /* Sección de planes en dos columnas */
+      section[clas="elige tu mejor opcion"] {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Sección Atendemos side-by-side */
+      .atendemos {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Footer en dos columnas */
+      footer .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ==============================
+       RESPONSIVE – DESKTOP (≤1064px y >768px)
+    ============================== */
+    @media screen and (min-width: 769px) and (max-width: 1064px) {
+      .menu-icon {
+        display: none;
+      }
+
+      nav {
+        position: static;
+        transform: translateX(0);
+        background: transparent;
+        height: auto;
+        width: 100%;
+      }
+
+      nav ul {
+        justify-content: center;
+        gap: 20px;
+      }
+
+      nav a {
+        padding: 8px 14px;
+        font-size: 0.95rem;
+      }
+
+      /* Sección Bienvenido */
+      #inicio .section-content {
+        padding: 55px 20px;
+      }
+      #inicio .section-content h2 {
+        font-size: 2.3rem;
+      }
+      #inicio .section-content p {
+        font-size: 1.15rem;
+      }
+
+      /* Sección de planes en tres columnas */
+      section[clas="elige tu mejor opcion"] {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Sección Atendemos side-by-side */
+      .atendemos {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Footer en tres columnas si cabe */
+      footer .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ==============================
+       RESPONSIVE – GRANDE (≥1065px)
+    ============================== */
+    @media screen and (min-width: 1065px) {
+      .menu-icon {
+        display: none;
+      }
+      #menuToggle:checked ~ nav {
+        transform: translateX(0);
+      }
+
+      nav {
+        position: static;
+        transform: translateX(0);
+        background: transparent;
+        width: auto;
+        height: auto;
+      }
+
+      nav ul {
+        gap: 30px;
+      }
+
+      nav a {
+        padding: 8px 16px;
+        font-size: 1rem;
+      }
+
+      /* Sección Bienvenido */
+      #inicio .section-content {
+        padding: 60px 30px;
+      }
+      #inicio .section-content h2 {
+        font-size: 2.5rem;
+      }
+      #inicio .section-content p {
+        font-size: 1.2rem;
+      }
+
+      /* Sección de planes en tres columnas */
+      section[clas="elige tu mejor opcion"] {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Sección Atendemos side-by-side */
+      .atendemos {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Footer en cuatro columnas si cabe */
+      footer .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
@@ -316,78 +794,215 @@
 <body>
 
   <header>
-    <!-- Checkbox oculto para activar menú -->
-    <input type="checkbox" id="menuToggle">
-    <label for="menuToggle" class="menu-icon"><i class="fa fa-bars"></i></label>
-    <div class="header-title">TecnoWeb Solutions</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="quierenessomos.html">¿Quiénes somos?</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="metodologia.html">Metodología</a></li>
-        <li><a href="empleados.html">Empleados</a></li>
-        <li>
-          <a href="#">Creadores <i class="fa fa-caret-down"></i></a>
-          <ul>
-            <li><a href="#">04_Dixiana Benitez</a></li>
-            <li><a href="#">46_Kevin Medina</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Login <i class="fa fa-caret-down"></i></a>
-          <ul>
-            <li><a href="login.html">Iniciar sesión</a></li>
-            <li><a href="registro.html">Registrarse</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+    <div class="nav-container">
+      <!-- Checkbox oculto para activar menú -->
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+      <div class="header-title">TecnoWeb Solutions</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="quierenessomos.html">¿Quiénes somos?</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="metodologia.html">Metodología</a></li>
+          <li><a href="empleados.html">Empleados</a></li>
+          <li>
+            <a href="#" tabindex="0">Creadores <i class="fa fa-caret-down"></i></a>
+            <ul>
+              <li><a href="#">04_Dixiana Benitez</a></li>
+              <li><a href="#">46_Kevin Medina</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" tabindex="0">Login <i class="fa fa-caret-down"></i></a>
+            <ul>
+              <li><a href="login.html">Iniciar sesión</a></li>
+              <li><a href="registro.html">Registrarse</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section id="inicio">
-      <!-- Se eliminó la etiqueta <img> según lo solicitado -->
+    <section class="inicio">
       <div class="section-content">
         <h2>Bienvenido</h2>
         <p>En TecnoWeb Solutions nos especializamos en ofrecer soluciones integrales para tus necesidades tecnológicas. Desde diseño web hasta servidores, estamos aquí para ayudarte.</p>
       </div>
     </section>
 
-    <section id="quienes-somos">
-      <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800" alt="Equipo">
-      <div class="section-content">
-        <h2>¿Quiénes somos?</h2>
-        <p>Somos una empresa enfocada en brindarte soporte tecnológico profesional y personalizado.</p>
+
+    <section clas="elige tu mejor opcion">
+        <div class="tema">
+            <h1>Elije el mejor plan de alojamiento</h1>
+        </div>
+      <div class="primera">
+        <div class="titulo"></div>
+            <h2>Single</h2>
+            <p>La Solucion Ideal para principiantes</p>
+        <div class="precio">
+            <h1>1,49$/mes</h1>
+            <p>En planes de 48 meses, IVA no incluido</p>
+        </div>
+        <div class="plan">
+            <a href="#">Elegi plan</a>
+        </div>
+        <div class="requisitos">
+            <ul>
+            <li>1 sitio web</li>
+            <li>Hosting administrado para WordPress</li>
+            <li>10 000 visitas al mes</li>
+            <li>10 GB de SSD</li>
+            </ul>
+        </div>
+      </div>
+
+
+      <div class="Segundo">
+        <div class="titulo"></div>
+            <h2>Premium</h2>
+            <p>El paquete perfecto para webs personales</p>
+        <div class="precio">
+            <h1>2,59$/mes</h1>
+            <p>En planes de 48 meses, IVA no incluido</p>
+        </div>
+        <div class="plan">
+            <a href="#">Elegi plan</a>
+        </div>
+        <div class="requisitos">
+            <ul>
+            <li>22 sitio web</li>
+            <li>Hosting administrado para WordPress</li>
+            <li>25 000 visitas al mes</li>
+            <li>25 GB de SSD</li>
+            </ul>
+        </div>
+      </div>
+
+
+       <div class="Tercero">
+        <div class="titulo"></div>
+            <h2>Bussines</h2>
+            <p>Sube de nivel con más potencia y funciones mejoradas</p>
+        <div class="precio">
+            <h1>3,79$/mes</h1>
+            <p>En planes de 48 meses, IVA no incluido</p>
+        </div>
+        <div class="plan">
+            <a href="#">Elegi plan</a>
+        </div>
+        <div class="requisitos">
+            <ul>
+            <li>50 sitio web</li>
+            <li>Hosting administrado para WordPress</li>
+            <li>100 000 visitas al mes</li>
+            <li>100 GB de SSD</li>
+            </ul>
+        </div>
       </div>
     </section>
 
-    <section id="servicios">
-      <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?auto=format&fit=crop&w=800&q=80" alt="Servicios TI">
-      <div class="section-content">
-        <h2>¿Qué ofrecemos?</h2>
-        <ul>
-          <li>Diseño y rediseño de páginas web</li>
-          <li>Seguridad informática para tus plataformas</li>
-          <li>Mantenimiento y mejora de servidores</li>
-          <li>Expansión de infraestructura tecnológica</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="metodologia">
-      <img width="13" src="data:image/jpeg;base64,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">
+    <section class="atendemos">
+      <img width="13" src="https://elviajedelcliente.com/wp-content/uploads/2020/01/como_mejorar_el_servicio_al_cliente-770x400.jpg">
     <div class="section-content">
-        <h2>Nuestra metodología</h2>
-        <p>Aplicamos un enfoque ágil y estructurado que incluye análisis, diseño, desarrollo, pruebas, implementación y mantenimiento.</p>
+        <h2>Asistencia 24/7 para tu Exito</h2>
+        <ul>
+            <li>¿Necesitas ayuda con tu sitio web? Resuelve tus dudas a través de nuestro chat en directo o por correo electrónico.</li>
+            <li>Despídete de las largas esperas. Resolveremos cualquier inconveniente en menos de 3 minutos.</li>
+            <li>Elimina las barreras de comunicación: nuestros agentes hablan español fluido.</li>
+        </ul>
       </div>
     </section>
   </main>
 
+
   <footer>
-    © 2023 TecnoWeb Solutions | Todos los derechos reservados
+    <div class="footer-grid">
+      <div class="footer-item">
+        <h3>Enlaces</h3>
+        <p><a href="index.html">Inicio</a></p>
+        <p><a href="quierenessomos.html">¿Quiénes somos?</a></p>
+        <p><a href="servicios.html">Servicios</a></p>
+        <p><a href="metodologia.html">Metodología</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>Contacto</h3>
+        <p><a href="tel:95541284"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32" fill="#25D366">
+  <path d="M16.004 3C9.376 3 4 8.377 4 15.004a11.91 11.91 0 001.62 6.01L4 29l8.196-2.15a11.932 11.932 0 003.808.617c6.628 0 12.004-5.376 12.004-12.004C28.004 8.377 22.628 3 16.004 3zm.004 21.004c-1.206 0-2.385-.188-3.49-.558l-.25-.082-4.872 1.277 1.293-4.746-.16-.264a9.01 9.01 0 01-1.332-4.703c0-4.965 4.037-9.004 9.004-9.004s9.004 4.039 9.004 9.004-4.037 9.004-9.004 9.004zm4.937-6.926c-.27-.135-1.598-.785-1.847-.875-.25-.092-.43-.135-.61.135s-.7.875-.857 1.055c-.157.18-.313.203-.582.068-.27-.135-1.141-.42-2.175-1.34-.804-.716-1.344-1.602-1.502-1.872-.157-.27-.017-.417.118-.552.122-.121.27-.313.405-.47.135-.157.18-.27.27-.45.09-.18.045-.338-.022-.472-.068-.135-.61-1.472-.837-2.02-.22-.528-.445-.455-.61-.463l-.522-.009a1.01 1.01 0 00-.728.338c-.25.27-.955.933-.955 2.277 0 1.344.977 2.645 1.113 2.83.135.18 1.922 2.938 4.66 4.117.651.28 1.16.446 1.556.57.654.208 1.248.18 1.717.109.523-.078 1.598-.653 1.823-1.285.225-.633.225-1.176.158-1.285-.068-.105-.245-.165-.515-.3z"/>
+</svg>
+9554-1284</a></p>
+        <p><a href="mailto:tecnowebsolutions@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 48 48">
+  <path fill="#EA4335" d="M6 12v24l14-12z"/>
+  <path fill="#34A853" d="M42 12v24L28 24z"/>
+  <path fill="#FBBC04" d="M6 12l18 14 18-14z"/>
+  <path fill="#4285F4" d="M28 24l-4 3-4-3v12h8z"/>
+</svg>
+tecnowebsolutions@gmail.com</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>Redes Sociales</h3>
+        <p><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#1877F2">
+  <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 
+  1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 
+  1.893-4.788 4.659-4.788 1.325 0 2.464.099 
+  2.797.143v3.24l-1.918.001c-1.504 
+  0-1.795.715-1.795 1.763v2.312h3.587l-.467 
+  3.622h-3.12V24h6.116C23.403 24 24 
+  23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
+</svg>Facebook</a></p>
+        <p><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512" fill="#1DA1F2">
+  <path d="M459.4 151.7c.3 4.1.3 8.2.3 12.4 
+  0 126.2-96 271.7-271.7 271.7-54.1 
+  0-104.4-15.8-146.7-42.7 7.6.9 
+  15.2 1.2 23.1 1.2 44.8 
+  0 86-15.2 118.8-40.8-42-1-77.5-28.5-89.7-66.5 
+  5.9.9 11.8 1.5 18 1.5 8.7 
+  0 17.1-1.2 25.1-3.3-43.8-8.7-76.8-47.4-76.8-93.7 
+  0-.3 0-.5 0-.8 12.9 7.2 
+  27.7 11.5 43.5 12.1-25.7-17.2-42.6-46.6-42.6-79.8 
+  0-17.4 4.5-33.7 12.3-47.7 45 55.2 
+  112.1 91.5 187.7 95.3-1.5-7-2.1-14.3-2.1-21.8 
+  0-52.6 42.6-95.2 95.2-95.2 27.4 
+  0 52.3 11.5 69.7 30 21.6-4.1 
+  42-12.1 60.4-23-7.2 22.5-22.5 
+  41.4-42.6 53.4 19.1-2.1 
+  37.3-7.3 54.2-14.7-12.6 
+  18.9-28.4 35.5-46.6 48.9z"/>
+</svg>
+Twitter</a></p>
+        <p><a href="https://www.instagram.com/dixib_a/"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 512" fill="#C13584">
+  <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 
+  114.9S160.5 370.8 224.1 370.8 
+  339 319.5 339 255.9 287.7 141 224.1 
+  141zm0 186c-39.3 0-71.1-31.8-71.1-71.1 
+  0-39.3 31.8-71.1 71.1-71.1 
+  39.3 0 71.1 31.8 71.1 71.1 
+  0 39.3-31.8 71.1-71.1 
+  71.1zm146.4-194.3c0 
+  14.9-12 26.9-26.9 
+  26.9s-26.9-12-26.9-26.9 
+  12-26.9 26.9-26.9 
+  26.9 12 26.9 26.9zm76.1 
+  27.2c-.1-54.4-44.2-98.5-98.6-98.6H100.1c-54.4.1-98.5 
+  44.2-98.6 98.6v211.5c.1 
+  54.4 44.2 98.5 98.6 
+  98.6h211.5c54.4-.1 
+  98.5-44.2 98.6-98.6V160.9zm-48.5 
+  211.5c0 27-22 49-49 
+  49H100.1c-27 0-49-22-49-49V160.9c0-27 
+  22-49 49-49h211.5c27 0 49 22 49 
+  49v211.5z"/>
+</svg>Instagram</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>TechoWeb Solutions</h3>
+        <p>"Tecnología confiable para tu éxito digital"</p>
+        <p>&copy; 2023 TecnoWeb Solutions | Diseñado por Dixiana & Kevin</p>
+      </div>
+    </div>
   </footer>
 
 </body>
 </html>
-

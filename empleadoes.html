@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TecnoWeb Solutions - Nuestro Equipo</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    /* ==============================
+       Variables de color y transiciones (del index)
+    ============================== */
+    :root {
+      --blue-dark: #191c3b;
+      --blue-mid: #353858;
+      --blue-light: #52536d;
+      --blue-bg: #c4ddf3;
+      --text-dark: #1f2f46;
+      --text-light: #ffffff;
+      --accent: #00c0ff;
+      --header-gradient: linear-gradient(to right, #52536d, #353858, #191c3b);
+      --transition: all 0.3s ease-in-out;
+    }
+
+    /* ==============================
+       Reset y estilos globales
+    ============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: var(--transition);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #DCEEFF;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ==============================
+       Animaciones del index
+    ============================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ==============================
+       HEADER (tomado del index)
+    ============================== */
+    header {
+      background: var(--header-gradient);
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 0 30px #1d1c3b;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .header-title {
+      font-weight: 700;
+      font-size: 2rem;
+      flex-grow: 1;
+      text-align: center;
+      text-shadow: 0 0 10px #000;
+      pointer-events: none;
+    }
+
+    /* Checkbox oculto para menú hamburguesa */
+    #menuToggle {
+      display: none;
+    }
+
+    /* Ícono del menú hamburguesa */
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-light);
+      z-index: 1100;
+    }
+
+    /* Navegación */
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    nav li {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    nav a {
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Icono 💻 al inicio de cada enlace */
+    nav a::before {
+      content: "💻";
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05) translateZ(20px);
+      color: var(--text-dark);
+      border-bottom: 2px solid var(--accent);
+      text-shadow: 0 0 8px var(--accent);
+      transition: var(--transition);
+      content: "🖥️";
+    }
+
+    /* Submenú oculto por defecto */
+    nav li > ul {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--blue-mid);
+      border-radius: 8px;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    /* Mostrar submenú al hacer foco o hover en el <li> */
+    nav li:focus-within > ul,
+    nav li:hover > ul {
+      display: flex;
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    nav li > ul li a {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      background: transparent;
+      color: var(--text-light);
+    }
+
+    nav li > ul li a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent);
+    }
+
+    /* ==============================
+       FOOTER (tomado del index)
+    ============================== */
+    footer {
+      background: var(--blue-mid);
+      color: var(--text-light);
+      text-align: center;
+      padding: 40px 20px;
+      font-weight: bold;
+      margin-top: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    footer h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: rgba(0, 0, 0, 0.705);
+    }
+
+    footer p,
+    footer a {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--text-light);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    /* ==============================
+       Estilos originales del contenido de "Nuestro Equipo"
+    ============================== */
+    .txt {
+      width: 100%;
+      height: 80vh;
+      background-image: url('https://statics.forbes.com.ec/2023/09/crop/64fa0ae1bb82c__600x390.webp');
+      background-position: center;
+      opacity: 0.65;
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      filter: saturate(1) contrast(-2);
+      text-align: center;
+      text-shadow: 0px 0px 50px #1f2f46;
+      z-index: -1;
+      animation: fadeInUp 1.5s ease-in-out;
+      margin-top: 20px;
+    }
+
+    .txt span {
+      animation: fadeInUp 1.8s linear forwards;
+      transform: scale(1);
+      opacity: 1;
+      color: rgb(56, 2, 67);
+      text-shadow: 0px 0px 50px rgb(30, 21, 75);
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      font-size: 45px;
+      padding: 20px;
+      border-radius: 10px;
+      background: white;
+      mix-blend-mode: hard-light;
+      width: 80%;
+    }
+
+    .title {
+      margin-top: 15vh;
+      width: 97vw;
+      height: 20vh;
+      background: #2f496d;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .title .textotitulo {
+      color: #dceeff;
+      text-shadow: #3a5f8a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 50px;
+      animation: slideInLeft 10s linear infinite both;
+    }
+
+    @keyframes textmove {
+      0%, 100% {
+        transform: translateX(0vw);
+      }
+      25% {
+        transform: translateX(-10vw);
+      }
+      50% {
+        transform: translateX(0vw);
+      }
+      75% {
+        transform: translateX(10vw);
+      }
+    }
+
+    /* “Nuestro Equipo” – galería y estilos */
+    .equipo {
+      margin-top: 30px;
+      width: 95%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #c8e2fb;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .container {
+      width: 95%;
+      height: auto;
+      display: grid;
+      margin: 10px;
+      gap: 30px 20px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      background: #bfe1ff;
+    }
+
+    .miembro1,
+    .miembro2,
+    .miembro3,
+    .miembro4,
+    .miembro5,
+    .miembro6,
+    .miembro7,
+    .miembro8,
+    .miembro9,
+    .miembro10 {
+      background-color: #5b8dd2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2% 10%;
+      border-radius: 5px;
+      color: #08182e;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .miembro1:hover,
+    .miembro2:hover,
+    .miembro3:hover,
+    .miembro4:hover,
+    .miembro5:hover,
+    .miembro6:hover,
+    .miembro7:hover,
+    .miembro8:hover,
+    .miembro9:hover,
+    .miembro10:hover {
+      background-color: #006eff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform: scale(1.03);
+      transition: all 0.3s ease-in-out;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .miembro1 img:hover,
+    .miembro2 img:hover,
+    .miembro3 img:hover,
+    .miembro4 img:hover,
+    .miembro5 img:hover,
+    .miembro6 img:hover,
+    .miembro7 img:hover,
+    .miembro8 img:hover,
+    .miembro9 img:hover,
+    .miembro10 img:hover {
+      transform: scale(1.1);
+      transition: transform 1.3s ease-in-out;
+    }
+
+    .container .miembro1 img,
+    .miembro2 img,
+    .miembro3 img,
+    .miembro4 img,
+    .miembro5 img,
+    .miembro6 img,
+    .miembro7 img,
+    .miembro8 img,
+    .miembro9 img,
+    .miembro10 img {
+      width: 100px;
+      height: auto;
+    }
+
+    .miembro1 *,
+    .miembro2 *,
+    .miembro3 *,
+    .miembro4 *,
+    .miembro5 *,
+    .miembro6 *,
+    .miembro7 *,
+    .miembro8 *,
+    .miembro9 *,
+    .miembro10 * {
+      margin: 10px 0px;
+    }
+
+    .miembro1 .profesion,
+    .miembro2 .profesion,
+    .miembro3 .profesion,
+    .miembro4 .profesion,
+    .miembro5 .profesion,
+    .miembro6 .profesion,
+    .miembro7 .profesion,
+    .miembro8 .profesion,
+    .miembro9 .profesion,
+    .miembro10 .profesion {
+      text-decoration: dotted;
+      padding: 10px;
+      background-color: #2f496d;
+      color: white;
+      border-radius: 5px;
+    }
+
+    /* ==============================
+       Responsive y ajustes menores
+    ============================== */
+    @media screen and (max-width: 468px) {
+      .menu-icon {
+        display: block;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background: rgba(25, 28, 59, 0.95);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      #menuToggle:checked ~ nav {
+        transform: translateX(0);
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+      }
+      nav li {
+        width: 100%;
+        text-align: center;
+      }
+      nav a {
+        padding: 12px 20px;
+        font-size: 1.1rem;
+      }
+      nav li > ul {
+        position: static;
+        background: none;
+        box-shadow: none;
+        transform: scaleY(1);
+        opacity: 1;
+        display: none;
+      }
+      nav li:focus-within > ul,
+      nav li:hover > ul {
+        display: flex;
+      }
+      nav li > ul li a {
+        padding-left: 35px;
+        font-size: 1rem;
+      }
+      .txt span {
+        font-size: 8vw;
+      }
+    }
+
+    @media screen and (min-width: 480px) and (max-width: 768px) {
+      header {
+        padding: 20px 30px;
+      }
+      .menu-icon {
+        display: none;
+      }
+      nav ul {
+        gap: 15px;
+      }
+      nav a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+      .txt span {
+        font-size: 6vw;
+      }
+      .title .textotitulo {
+        font-size: 30px;
+      }
+      .container {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+      }
+      .miembro1,
+      .miembro2,
+      .miembro3,
+      .miembro4,
+      .miembro5,
+      .miembro6,
+      .miembro7,
+      .miembro8,
+      .miembro9,
+      .miembro10 {
+        padding: 5% 5%;
+      }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      header {
+        padding: 25px 35px;
+      }
+      nav ul {
+        gap: 18px;
+      }
+      nav a {
+        padding: 10px 14px;
+        font-size: 0.95rem;
+      }
+      .txt span {
+        font-size: 7vw;
+      }
+      .title .textotitulo {
+        font-size: 40px;
+      }
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER CON ESTILO DEL INDEX -->
+  <header>
+    <input type="checkbox" id="menuToggle" />
+    <label for="menuToggle" class="menu-icon"><i class="fa fa-bars"></i></label>
+    <div class="header-title">TecnoWeb Solutions</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="quienessomos.html">¿Quiénes somos?</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="metodologia.html">Metodología</a></li>
+        <li><a href="empleados.html">Empleados</a></li>
+        <li>
+          <a href="#" tabindex="0">Creadores <i class="fa fa-caret-down"></i></a>
+          <ul>
+            <li><a href="#">Eliana Yanes</a></li>
+            <li><a href="#">Ariel Vasquez</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" tabindex="0">Login <i class="fa fa-caret-down"></i></a>
+          <ul>
+            <li><a href="#">Iniciar sesión</a></li>
+            <li><a href="#">Registrarse</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO ORIGINAL: NO MODIFICAR TEXTO NI DISEÑO DE GALERÍA -->
+  <div class="txt">
+    <span>Nuestro Equipo De Trabajo Para Su Atencion</span>
+  </div>
+
+  <div class="title">
+    <div class="textotitulo">Conoce a Nuestro Equipo</div>
+  </div>
+
+  <div class="equipo">
+    <div class="container">
+      <div class="miembro1">
+        <img src="Dixiana.jpeg" alt="Dixiana Benítez" style="width: 250px;" />
+        <h3>Dixiana Benítez</h3>
+        <div class="profesion">Analista de Requisitos</div>
+        <div>
+          Se encarga de reunir y definir los objetivos del cliente, traduciendo sus ideas
+          en especificaciones claras para el equipo.
+        </div>
+      </div>
+
+      <div class="miembro2">
+        <img src="Eliana.jpg" alt="Eliana Yanes" />
+        <h3>Eliana Yanes</h3>
+        <div class="profesion">Diseñadora UI/UX</div>
+        <div>
+          Organiza al equipo usando metodologías ágiles, asegurando calidad y tiempos.
+          Diseña interfaces atractivas y funcionales centradas en el usuario.
+        </div>
+      </div>
+
+      <div class="miembro3">
+        <img src="Kevin.jpg" alt="Kevin Medina" style="width: 150px;" />
+        <h3>Kevin Medina</h3>
+        <div class="profesion">Desarrollador Backend</div>
+        <div>
+          Implementa la lógica del sistema, gestiona bases de datos y asegura el correcto
+          funcionamiento del lado del servidor.
+        </div>
+      </div>
+
+      <div class="miembro4">
+        <img src="Ioshua.jpg" alt="Ioshua Redriguez" style="width: 150px;" />
+        <h3>Ioshua Redriguez</h3>
+        <div class="profesion">Desarrollador Fullstack</div>
+        <div>
+          Resuelve problemas técnicos con rapidez y adapta soluciones para frontend y backend
+          según las necesidades del proyecto.
+        </div>
+      </div>
+
+      <div class="miembro5">
+        <img src="Maria.jpg" alt="María Acosata" style="width: 200px;" />
+        <h3>María Acosata</h3>
+        <div class="profesion">Testeadora de Calidad</div>
+        <div>
+          Verifica que todo funcione como debe, detecta errores y propone mejoras para
+          garantizar una experiencia sin fallos.
+        </div>
+      </div>
+
+      <div class="miembro6">
+        <img src="Itzel.jpg" alt="Itzel Torres" style="width: 220px;" />
+        <h3>Itzel Torres</h3>
+        <div class="profesion">Diseñadora de Contenidos</div>
+        <div>
+          Se encarga de crear textos claros, amigables y efectivos para el sitio web, pensando
+          siempre en el usuario final.
+        </div>
+      </div>
+
+      <div class="miembro7">
+        <img src="Joav.jpg" alt="Joav Flores" style="width: 150px;" />
+        <h3>Joav Flores</h3>
+        <div class="profesion">Líder Técnico</div>
+        <div>
+          Coordina la arquitectura del sistema y asesora al equipo en decisiones técnicas
+          complejas. Siempre busca eficiencia.
+        </div>
+      </div>
+
+      <div class="miembro8">
+        <img src="Henrry.jpg" alt="Henry Montes" style="width: 140px;" />
+        <h3>Henry Montes</h3>
+        <div class="profesion">Administrador de Proyecto</div>
+        <div>
+          Gestiona los tiempos, recursos y tareas. Garantiza que cada parte del proyecto avance de
+          forma organizada.
+        </div>
+      </div>
+
+      <div class="miembro9">
+        <img src="Añañin.jpg" alt="Daniel Nuñez" style="width: 160px;" />
+        <h3>Daniel Nuñez</h3>
+        <div class="profesion">Soporte Técnico / DevOps</div>
+        <div>
+          Maneja el despliegue de las aplicaciones, entornos de prueba y mantenimiento de servidores.
+          Siempre listo con una solución.
+        </div>
+      </div>
+
+      <div class="miembro10">
+        <img src="Ariel.jpg" alt="Ariel Vasquez" style="width: 200px;" />
+        <h3>Ariel Vasquez</h3>
+        <div class="profesion">Investigador Tecnológico</div>
+        <div>
+          Explora nuevas herramientas, frameworks y técnicas que el equipo puede adoptar para innovar
+          constantemente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER CON ESTILO DEL INDEX -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-item">
+        <h3>Enlaces</h3>
+        <p><a href="index.html">Inicio</a></p>
+        <p><a href="quienessomos.html">¿Quiénes somos?</a></p>
+        <p><a href="servicios.html">Servicios</a></p>
+        <p><a href="metodologia.html">Metodología</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>Contacto</h3>
+        <p>Tel: 9554-1284</p>
+        <p>Email: tecnowebsolutions@gmail.com</p>
+      </div>
+      <div class="footer-item">
+        <h3>Redes Sociales</h3>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Twitter</a></p>
+        <p><a href="https://www.instagram.com/dixib_a/">Instagram</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>TecnoWeb Solutions</h3>
+        <p>"Tecnología confiable para tu éxito digital"</p>
+        <p>&copy; 2025 TecnoWeb Solutions</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

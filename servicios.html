@@ -1,262 +1,254 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services | TecnoWeb Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <style>
+    :root {
+      --blue-dark: #191c3b;
+      --blue-mid: #353858;
+      --blue-light: #52536d;
+      --blue-bg: #c4ddf3;
+      --text-dark: #1f2f46;
+      --text-light: #ffffff;
+      --accent: #00c0ff;
+      --transition: all 0.3s ease-in-out;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: var(--transition);
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--blue-bg);
+      color: var(--text-dark);
+      padding-top: 0;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    header {
+      background: linear-gradient(to right, #52536d, #353858, #191c3b);
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 40px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 0 30px #1d1c3b;
+    }
+    .header-title {
+      font-weight: 700;
+      font-size: 2rem;
+      flex-grow: 1;
+      text-align: center;
+      text-shadow: 0 0 10px #000000;
+      cursor: default;
+    }
+    .header-title:hover {
+      text-shadow: 0 0 15px var(--accent);
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+    nav a::before {
+      content: "💻";
+      margin-right: 4px;
+    }
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+      color: var(--accent);
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 160px 20px 40px 20px;
+      animation: fadeInUp 1s ease forwards;
+    }
+    .intro {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .carta {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s ease forwards;
+    }
+    .carta:hover {
+      transform: translateY(-4px);
+    }
+    .carta strong {
+      font-size: 1.2rem;
+      color: #5a8dee;
+    }
+    .whatsapp {
+      background-color: rgb(0 107 179);
+      color: #fff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 15px;
+      border: 3px solid #ffffff4d;
+      cursor: pointer;
+      margin: 30px auto;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    .whatsapp:hover {
+      transform: scale(1.05);
+      border-color: #fff9;
+    }
+    footer {
+      background: var(--blue-mid);
+      color: var(--text-light);
+      text-align: center;
+      padding: 40px 20px;
+      font-weight: bold;
+      margin-top: 60px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1s ease forwards;
+    }
+    footer h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: rgba(0, 0, 0, 0.705);
+    }
+    footer p,
+    footer a {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--text-light);
+    }
+    footer a:hover {
+      color: var(--accent);
+    }
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    footer .footer-item {
+      text-align: left;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-title">TecnoWeb Solutions</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="quierenessomos.html">¿Quiénes somos?</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="metodologia.html">Metodología</a></li>
+        <li><a href="empleados.html">Empleados</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-         <title>Services | TecnoWeb Solutions</title>
-         <style>
-            * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <div class="container">
+    <div class="intro">
+      <h2>Nuestros Servicios</h2>
+      <p>Soluciones digitales inteligentes para elevar las ganancias, más money.</p>
+    </div>
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #b5b5b5;
-  color: #1e1e1e;
-  padding-top: 100px;
-}
+    <div class="carta">
+      <strong>Desarrollo Web Profesional</strong>
+      <p>Sitios web rápidos y escalables adaptados a tu marca y objetivos comerciales.</p>
+    </div>
 
-/* Header fijo */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: linear-gradient(to right, #5a8dee, #ffffff);
-  color: white;
-  padding: 20px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
+    <div class="carta">
+      <strong>Desarrollo de Aplicaciones Móviles</strong>
+      <p>Desarrollamos tus aplicaciones móviles tanto para iOS como Android.</p>
+    </div>
 
-header h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color:#fff;
-}
+    <div class="carta">
+      <strong>Diseño Personalizado</strong>
+      <p>Diseños modernos y amigables personalizados a tu público o a tu gusto.</p>
+    </div>
 
-header img {
-  height: 40px;
-}
+    <div class="carta">
+      <strong>Consultoría tecnológica</strong>
+      <p>Orientación experta para ayudarte a tomar decisiones tecnológicas inteligentes.</p>
+    </div>
 
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 40px 20px;
-}
+    <div class="carta">
+      <strong>Integraciones de API y Plataforma</strong>
+      <p>Amplía el poder de tu sistema con integraciones de terceros sin problemas.</p>
+    </div>
 
-.intro {
-  margin-bottom: 40px;
-  text-align: center;
-}
+    <div class="carta">
+      <strong>Mantenimiento y soporte</strong>
+      <p>Mantenemos todo funcionando sin problemas, de manera segura y actualizada con nuestros servicios de consulta.</p>
+    </div>
 
-.intro p {
-  font-size: 1.1rem;
-  color: #555;
-}
-
-.carta {
-  background: white;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  
-}
-
-.carta:hover {
-  transform: translateY(-4px);
-}
-
-.carta strong {
-  font-size: 1.2rem;
-  color: #5a8dee;
-}
-
-a.cta {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 12px 25px;
-  background: #5a8dee;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-}
-a.cta:hover {
-  background: #3a6cd9;
-}
-
-footer {
-  background: #eaeef6;
-  color: #444;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  border-top: 1px solid #ccc;
-  margin-top: 60px;
-}
-
-button.whatsapp {
-  background-color: #25D366;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  header h1 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-  }
-}
-
-.whatsapp {
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  padding-block: 0.5rem;
-  padding-inline: 1.25rem;
-  background-color: rgb(0 107 179);
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffff;
-  gap: 10px;
-  font-weight: bold;
-  border: 3px solid #ffffff4d;
-  outline: none;
-  overflow: hidden;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  transition: all 0.3s ease-in-out;
-}
-
-.whatsapp {
- position: relative;
-  left: 35%;
-}
-.whatsapp:hover {
-  transform: scale(1.05);
-  border-color: #fff9;
-}
-
-.whatsapp:hover .icon {
-  transform: translate(4px);
-}
-
-.whatsapp:hover::before {
-  animation: shine 1.5s ease-out infinite;
-}
-
-.whatsapp::before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  background-image: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 30%,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0) 70%
-  );
-  top: 0;
-  left: -100px;
-  opacity: 0.6;
-}
-
-@keyframes shine {
-  0% {
-    left: -100px;
-  }
-
-  60% {
-    left: 100%;
-  }
-
-  to {
-    left: 100%;
-  }
-}
-         </style>
-    </head>
-    <body>
-        
-<header>
-  <h1>TecnoWeb Solutions</h1>
-  <img src="https://www.homepaylater.vn/static/c9ebaaf4cdf892ed17f6fdbd30f977f0/7b48c/novadigital_logo_aaa2301849.jpg" alt="NovaDigital Logo" width="25%">
-</header>
-
-<div class="container">
-
-  <div class="intro">
-    <h2>Nuestros Servicios</h2>
-    <p>Soluciones digitales inteligentes para elevar las ganancias, más money.</p>
+    <a class="whatsapp" href="https://wa.me/50488312584?text=Hola%2C%20estoy%20interesado%20en%20sus%20servicios" target="_blank">📱 Chatea por WhatsApp</a>
   </div>
 
-  <div class="carta">
-    <strong>Desarrollo Web Profesional</strong>
-    <p>Sitios web rápidos y escalables adaptados a tu marca y objetivos comerciales.</p>
-  </div>
-
-  <div class="carta">
-    <strong>Desarrollo de Aplicaciones Móviles</strong>
-    <p>Desarrollamos tus aplicaciones móviles tanto para iOS como Android.</p>
-  </div>
-  <div class="carta">
-    <strong>Diseño Personalizado</strong>
-    <p>Diseños modernos y amigables personalizados a tu público o a tu gusto.</p>
-  </div>
-
-  <div class="carta">
-    <strong>Consultoría tecnológica</strong>
-    <p>Orientación experta para ayudarte a tomar decisiones tecnológicas inteligentes.</p>
-  </div>
-
-  <div class="carta">
-    <strong>Integraciones de API y Plataforma</strong>
-    <p>Amplía el poder de tu sistema con integraciones de terceros sin problemas.</p>
-  </div>
-
-  <div class="carta">
-    <strong>Mantenimiento y soporte</strong>
-    <p>Mantenemos todo funcionando sin problemas, de manera segura y actualizada con nuestros servicios de consulta.</p>
-  </div>
-
-  <div style="text-align: center;">
-
-    <a href="https://wa.me/50488312584?text=Hola%2C%20estoy%20interesado%20en%20sus%20servicios" target="_blank">
-      <button class="whatsapp">📱 Chatea por WhatsApp</button>
-    </a>
-  </div>
-
-</div>
-
-<footer>
-  © 2025 TecnoWeb Solutions. Todos los derechos reservados por BTP.
-</footer>
-    </body>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-item">
+        <h3>Enlaces</h3>
+        <p><a href="index.html">Inicio</a></p>
+        <p><a href="quierenessomos.html">¿Quiénes somos?</a></p>
+        <p><a href="servicios.html">Servicios</a></p>
+        <p><a href="metodologia.html">Metodología</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>Contacto</h3>
+        <p><a href="tel:95541284">📞 9554-1284</a></p>
+        <p><a href="mailto:tecnowebsolutions@gmail.com">📧 tecnowebsolutions@gmail.com</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>Redes Sociales</h3>
+        <p><a href="#">📘 Facebook</a></p>
+        <p><a href="#">🐦 Twitter</a></p>
+        <p><a href="#">📸 Instagram</a></p>
+      </div>
+      <div class="footer-item">
+        <h3>TecnoWeb Solutions</h3>
+        <p>"Tecnología confiable para tu éxito digital"</p>
+        <p>&copy; 2025 TecnoWeb Solutions | Diseñado por Dixiana & Kevin</p>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>
