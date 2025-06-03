@@ -44,6 +44,7 @@
       width: 100%;
       z-index: 1000;
       box-shadow: 0 0 30px #1d1c3b;
+      flex-wrap: wrap;
     }
     .header-title {
       font-weight: 700;
@@ -56,9 +57,22 @@
     .header-title:hover {
       text-shadow: 0 0 15px var(--accent);
     }
+    nav {
+      position: relative;
+    }
+    .menu-toggle {
+      display: none;
+    }
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
     nav ul {
       display: flex;
       gap: 20px;
+      list-style: none;
     }
     nav a {
       font-weight: 600;
@@ -77,6 +91,29 @@
       transform: scale(1.05);
       color: var(--accent);
     }
+
+    /* Responsive Header */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+      nav ul {
+        flex-direction: column;
+        background: var(--blue-mid);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 220px;
+        display: none;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+      .menu-toggle:checked + .menu-icon + ul {
+        display: flex;
+      }
+    }
+
     .container {
       max-width: 1000px;
       margin: auto;
@@ -174,6 +211,8 @@
   <header>
     <div class="header-title">TecnoWeb Solutions</div>
     <nav>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
       <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="quierenessomos.html">¿Quiénes somos?</a></li>
